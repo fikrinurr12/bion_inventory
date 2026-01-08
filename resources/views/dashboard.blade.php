@@ -47,7 +47,7 @@
                             <h2 class="mb-0 fw-bold">Rp {{ number_format($totalNilai, 0, ',', '.') }}</h2>
                         </div>
                         <div class="text-warning">
-                            <i class="bi bi-currency-rupiah" style="font-size: 2.5rem;"></i>
+                            <i class="bi bi-currency-dollar" style="font-size: 2.5rem;"></i>
                         </div>
                     </div>
                 </div>
