@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PenerimaanBarang;
 use App\Models\Barang;
+use App\Models\LokasiGudang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -22,7 +23,8 @@ class PenerimaanBarangController extends Controller
     public function create()
     {
         $barang = Barang::orderBy('nama_barang')->get();
-        return view('penerimaan.create', compact('barang'));
+        $lokasiGudang = LokasiGudang::orderBy('nama_lokasi')->get(); // Tambahkan ini
+        return view('penerimaan.create', compact('barang', 'lokasiGudang'));
     }
 
     public function store(Request $request)
@@ -81,7 +83,8 @@ class PenerimaanBarangController extends Controller
     public function edit(PenerimaanBarang $penerimaan)
     {
         $barang = Barang::orderBy('nama_barang')->get();
-        return view('penerimaan.edit', compact('penerimaan', 'barang'));
+        $lokasiGudang = LokasiGudang::orderBy('nama_lokasi')->get(); // Tambahkan ini
+        return view('penerimaan.edit', compact('penerimaan', 'barang', 'lokasiGudang'));
     }
 
     public function update(Request $request, PenerimaanBarang $penerimaan)

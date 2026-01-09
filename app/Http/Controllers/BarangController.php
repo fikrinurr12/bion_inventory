@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\LokasiGudang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -16,7 +17,9 @@ class BarangController extends Controller
 
     public function create()
     {
-        return view('barang.create');
+        // Ambil semua lokasi gudang
+        $lokasiGudang = LokasiGudang::orderBy('nama_lokasi')->get();
+        return view('barang.create', compact('lokasiGudang'));
     }
 
     public function store(Request $request)
@@ -44,7 +47,9 @@ class BarangController extends Controller
 
     public function edit(Barang $barang)
     {
-        return view('barang.edit', compact('barang'));
+        // Ambil semua lokasi gudang
+        $lokasiGudang = LokasiGudang::orderBy('nama_lokasi')->get();
+        return view('barang.edit', compact('barang', 'lokasiGudang'));
     }
 
     public function update(Request $request, Barang $barang)

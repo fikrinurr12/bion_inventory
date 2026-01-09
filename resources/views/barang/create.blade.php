@@ -80,12 +80,20 @@
 
                         <div class="mb-3">
                             <label for="lokasi_penyimpanan" class="form-label">Lokasi Penyimpanan</label>
-                            <input type="text" 
-                                   class="form-control @error('lokasi_penyimpanan') is-invalid @enderror" 
-                                   id="lokasi_penyimpanan" 
-                                   name="lokasi_penyimpanan" 
-                                   value="{{ old('lokasi_penyimpanan') }}"
-                                   placeholder="Contoh: Gudang A - Rak 1">
+                            <select class="form-select @error('lokasi_penyimpanan') is-invalid @enderror" 
+                                    id="lokasi_penyimpanan" 
+                                    name="lokasi_penyimpanan">
+                                <option value="">-- Pilih Lokasi Gudang --</option>
+                                @foreach($lokasiGudang as $lokasi)
+                                    <option value="{{ $lokasi->nama_lokasi }}" {{ old('lokasi_penyimpanan') == $lokasi->nama_lokasi ? 'selected' : '' }}>
+                                        {{ $lokasi->kode_lokasi }} - {{ $lokasi->nama_lokasi }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <small class="text-muted">
+                                <i class="bi bi-info-circle"></i> 
+                                Belum ada lokasi? <a href="{{ route('lokasi-gudang.create') }}" target="_blank">Tambah lokasi baru</a>
+                            </small>
                             @error('lokasi_penyimpanan')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

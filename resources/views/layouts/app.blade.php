@@ -86,10 +86,8 @@
                 <nav class="col-md-2 d-md-block sidebar p-0">
                     <div class="position-sticky pt-4">
                         <div class="text-center mb-4">
-                            <h4 class="text-white fw-bold">
-                                <i class="bi bi-box-seam"></i> BION
-                            </h4>
-                            <small class="text-white-50">Inventory System</small>
+                            <img src="{{ asset('img/logo.png') }}" alt="BION Logo" style="height: 70px; margin-bottom: 5px;">
+                            <small class="text-white-50 d-block">Inventory System</small>
                         </div>
                         
                         <hr class="text-white-50">
