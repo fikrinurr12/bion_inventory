@@ -1,0 +1,29 @@
+[package]
+name = "bion-inventory"
+version = "0.1.0"
+description = "Bion Inventory Laravel Application"
+
+[[module]]
+name = "bion-inventory"
+source = "."
+abi = "none"
+
+[dependencies]
+php = "8.2"
+
+[fs]
+"/app" = "."
+"/tmp" = "tmp"
+
+[commands.start]
+module = "php:php"
+runner = "wasi"
+args = ["artisan", "serve", "--host=0.0.0.0", "--port=8080"]
+
+[build]
+commands = [
+    "composer install --optimize-autoloader --no-dev --no-scripts --no-interaction",
+    "php artisan config:cache",
+    "php artisan route:cache",
+    "php artisan view:cache"
+]
