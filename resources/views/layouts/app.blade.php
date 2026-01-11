@@ -86,8 +86,10 @@
                 <nav class="col-md-2 d-md-block sidebar p-0">
                     <div class="position-sticky pt-4">
                         <div class="text-center mb-4">
-                            <img src="{{ asset('img/logo.png') }}" alt="BION Logo" style="height: 70px; margin-bottom: 5px;">
-                            <h1 class="text-white d-block">BIMS</h1>
+                            <div class="d-flex align-items-center justify-content-center gap-3">
+                                <img src="{{ asset('img/logo.png') }}" alt="BION Logo" style="height: 70px;">
+                                <h1 class="text-white mb-0" style="font-size: 2.5rem; font-weight: 900; letter-spacing: 2px;">BIMS</h1>
+                            </div>
                         </div>
                         
                         <hr class="text-white-50">
