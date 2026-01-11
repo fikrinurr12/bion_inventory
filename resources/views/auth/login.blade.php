@@ -25,10 +25,9 @@
                     <img src="{{ asset('img/logo.png') }}" alt="BION Logo" style="height: 80px;">
                 </div>
                 
-                <h2>Selamat Datang</h2>
+                <h1>BIMS</h1>
                 <p>
-                    Sistem Informasi Pengelolaan Inventaris Barang<br>
-                    PT Bion Digital Indonesia
+                    Bion Inventory Management System
                 </p>
                 
                 <ul class="auth-features">

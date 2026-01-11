@@ -87,7 +87,7 @@
                     <div class="position-sticky pt-4">
                         <div class="text-center mb-4">
                             <img src="{{ asset('img/logo.png') }}" alt="BION Logo" style="height: 70px; margin-bottom: 5px;">
-                            <small class="text-white-50 d-block">Inventory System</small>
+                            <h1 class="text-white d-block">BIMS</h1>
                         </div>
                         
                         <hr class="text-white-50">
