@@ -10,6 +10,9 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Inter:400,500,600,700" rel="stylesheet">
     
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
@@ -21,14 +24,19 @@
         <!-- Welcome Section - Left Side -->
         <div class="auth-welcome">
             <div class="welcome-content">
-                <div class="auth-logo">
-                    <img src="{{ asset('img/logo.png') }}" alt="BION Logo" style="height: 80px;">
+                <!-- Logo and BIMS - Horizontal Layout -->
+                <div class="d-flex">
+                    <!-- Logo -->
+                    <div class="auth-logo me-3">
+                        <img src="{{ asset('img/logo.png') }}" alt="BION Logo" style="height: 80px;">
+                    </div>
+                    
+                    <!-- BIMS and System Name -->
+                    <div>
+                        <h1 class="display-3 fw-bold text-white mb-0" style="letter-spacing: 4px; line-height: 1;">BIMS</h1>
+                        <p class="fs-6 text-white-80 mb-0" style="letter-spacing: 1px;">Bion Inventory Management System</p>
+                    </div>
                 </div>
-                
-                <h1>BIMS</h1>
-                <p>
-                    Bion Inventory Management System
-                </p>
                 
                 <ul class="auth-features">
                     <li>
@@ -154,5 +162,8 @@
             }
         }
     </script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
