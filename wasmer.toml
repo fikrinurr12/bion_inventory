@@ -1,32 +1,17 @@
-[package]
-name = "bion-inventory"
-version = "0.1.0"
-description = "Bion Inventory Laravel Application"
+[phases.setup]
+nixPkgs = ["php82", "php82Packages.composer"]
 
-[[module]]
-name = "bion-inventory"
-source = "."
-abi = "none"
+[phases.install]
+cmds = [
+    "composer install --no-dev --optimize-autoloader --no-scripts --no-interaction --prefer-dist"
+]
 
-[dependencies]
-php = "8.2"
-
-[fs]
-"/app" = "."
-"/tmp" = "tmp"
-
-[commands.start]
-module = "php:php"
-runner = "wasi"
-args = ["artisan", "serve", "--host=0.0.0.0", "--port=8080"]
-
-[build]
-commands = [
-    "composer install --optimize-autoloader --no-dev --no-scripts --no-interaction",
-    "npm install --legacy-peer-deps",
-    "npm run build",
-    "php artisan migrate --force",
+[phases.build]  
+cmds = [
     "php artisan config:cache",
-    "php artisan route:cache",
+    "php artisan route:cache", 
     "php artisan view:cache"
 ]
+
+[start]
+cmd = "php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
