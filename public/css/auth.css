@@ -310,13 +310,17 @@ body.auth-page::after {
 
 /* Responsive */
 @media (max-width: 768px) {
+    * {
+        overflow: auto;
+    }
+
     .auth-container {
         flex-direction: column;
         max-height: none;
     }
 
     .auth-welcome {
-        padding: 40px 30px;
+        display: none;
     }
 
     .auth-form-section {
@@ -331,8 +335,16 @@ body.auth-page::after {
 
 /* Reduce padding on smaller screens */
 @media (max-width: 768px) {
+    * {
+        overflow: auto;
+    }
+
     .auth-form-section {
         padding: 30px 20px !important;
+    }
+
+    .auth-welcome {
+        display: none;
     }
 
     .form-group {
@@ -346,9 +358,12 @@ body.auth-page::after {
 
 /* Extra small devices */
 @media (max-width: 576px) {
+    * {
+        overflow: auto;
+    }
+
     .auth-welcome {
-        padding: 30px 20px !important;
-        min-height: 300px;
+        display: none;
     }
 
     .auth-logo h1 {

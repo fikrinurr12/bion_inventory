@@ -25,6 +25,7 @@
             min-height: 100vh;
             background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
             box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
         }
         .sidebar .nav-link {
             color: rgba(255,255,255,0.8);
@@ -73,6 +74,90 @@
             font-weight: 700;
             font-size: 1.3rem;
         }
+
+        /* Burger Menu Styles */
+        .burger-btn {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1050;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .burger-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1040;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar-overlay.show {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 767.98px) {
+            .burger-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 280px;
+                z-index: 1045;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .col-md-10.ms-sm-auto {
+                margin-left: 0 !important;
+                width: 100%;
+            }
+
+            main.col-md-10 {
+                padding-top: 70px !important;
+            }
+
+            .d-md-block {
+                display: block !important;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                position: relative;
+                transform: translateX(0) !important;
+            }
+        }
     </style>
     
     @stack('styles')
@@ -80,10 +165,18 @@
 <body>
     <div id="app">
         @auth
+        <!-- Burger Menu Button -->
+        <button class="burger-btn" id="burgerBtn" onclick="toggleSidebar()">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <!-- Sidebar Overlay -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
         <div class="container-fluid">
             <div class="row">
                 <!-- Sidebar -->
-                <nav class="col-md-2 d-md-block sidebar p-0">
+                <nav class="col-md-2 d-md-block sidebar p-0" id="sidebar">
                     <div class="position-sticky pt-4">
                         <div class="text-center mb-4">
                             <div class="d-flex align-items-center justify-content-center gap-3">
@@ -213,6 +306,52 @@
         </main>
         @endauth
     </div>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const burgerBtn = document.getElementById('burgerBtn');
+            
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+            
+            // Change burger icon
+            const icon = burgerBtn.querySelector('i');
+            if (sidebar.classList.contains('show')) {
+                icon.className = 'bi bi-x-lg';
+            } else {
+                icon.className = 'bi bi-list';
+            }
+        }
+
+        // Close sidebar when clicking on a link (mobile only)
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.innerWidth < 768) {
+                const sidebarLinks = document.querySelectorAll('.sidebar .nav-link');
+                sidebarLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        toggleSidebar();
+                    });
+                });
+            }
+        });
+
+        // Close sidebar on window resize to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('sidebarOverlay');
+                const burgerBtn = document.getElementById('burgerBtn');
+                
+                sidebar.classList.remove('show');
+                overlay.classList.remove('show');
+                
+                const icon = burgerBtn.querySelector('i');
+                icon.className = 'bi bi-list';
+            }
+        });
+    </script>
     
     @stack('scripts')
 </body>
